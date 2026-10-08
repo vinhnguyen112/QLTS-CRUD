@@ -1,0 +1,148 @@
+@model QLTS.Models.Asset
+
+@{
+    ViewData["Title"] = "Xóa tài sản";
+    bool hasHistory = ViewBag.HasHistory == true;
+}
+
+<h1>Xóa tài sản</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i> @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (hasHistory)
+{
+    <div class="alert alert-warning" role="alert">
+        <h5 class="alert-heading">⚠️ Không thể xóa tài sản này!</h5>
+        <p>Tài sản đã phát sinh dữ liệu lịch sử liên quan:</p>
+        <ul>
+            @if (ViewBag.ProcurementCount > 0)
+            {
+                <li>Phiếu nhập tài sản: <strong>@ViewBag.ProcurementCount</strong> bản ghi</li>
+            }
+            @if (ViewBag.AssignmentCount > 0)
+            {
+                <li>Lịch sử cấp phát / điều chuyển: <strong>@ViewBag.AssignmentCount</strong> bản ghi</li>
+            }
+            @if (ViewBag.MaintenanceCount > 0)
+            {
+                <li>Lịch sử bảo trì / sửa chữa: <strong>@ViewBag.MaintenanceCount</strong> bản ghi</li>
+            }
+            @if (ViewBag.DisposalCount > 0)
+            {
+                <li>Đề nghị / quyết định thanh lý: <strong>@ViewBag.DisposalCount</strong> bản ghi</li>
+            }
+        </ul>
+        <hr />
+        <p class="mb-0">Để đảm bảo tính toàn vẹn dữ liệu kế toán và tài sản, hệ thống không cho phép xóa tài sản đã có lịch sử.</p>
+    </div>
+}
+else
+{
+    <h3>Bạn có chắc chắn muốn xóa tài sản này?</h3>
+}
+
+<div>
+    <h4>Thông tin tài sản</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AssetCode)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.AssetCode)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AssetName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.AssetName)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Department.DepartmentName)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Employee.FullName)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.OriginalCost)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.OriginalCost)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="AssetId" />
+
+        @if (hasHistory)
+        {
+            <button type="submit" class="btn btn-danger" disabled title="Tài sản đã có lịch sử, không thể xóa">
+                Xóa (Đã bị khóa)
+            </button>
+        }
+        else
+        {
+            <input type="submit" value="Xác nhận Xóa" class="btn btn-danger" />
+        }
+        |
+        <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+    </form>
+</div>

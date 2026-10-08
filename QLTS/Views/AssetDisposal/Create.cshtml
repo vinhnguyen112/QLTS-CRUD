@@ -1,0 +1,72 @@
+@model QLTS.Models.AssetDisposal
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Tạo mới</h1>
+
+<h4>Thanh lý Tài sản</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="AssetId" class="control-label"></label>
+                <select asp-for="AssetId" class ="form-control" asp-items="ViewBag.AssetId">
+                    <option value="">-- Chọn tài sản --</option>
+                </select>
+                <span asp-validation-for="AssetId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="DisposalDate" class="control-label"></label>
+                <input asp-for="DisposalDate" class="form-control" type="date" />
+                <span asp-validation-for="DisposalDate" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Reason" class="control-label"></label>
+                <textarea asp-for="Reason" class="form-control"></textarea>
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="DisposalMethod" class="control-label"></label>
+                <select asp-for="DisposalMethod" class="form-control" asp-items="ViewBag.DisposalMethod"></select>
+                <span asp-validation-for="DisposalMethod" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="DisposalValue" class="control-label"></label>
+                <input asp-for="DisposalValue" class="form-control" />
+                <span asp-validation-for="DisposalValue" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control" asp-items="ViewBag.Status"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ApprovedBy" class="control-label"></label>
+                <select asp-for="ApprovedBy" class ="form-control" asp-items="ViewBag.ApprovedBy">
+                    <option value="">-- Chọn người phê duyệt --</option>
+                </select>
+                <span asp-validation-for="ApprovedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,44 @@
+﻿@model QLTS.Models.Department
+
+@{
+    ViewData["Title"] = "Chi tiết phòng ban";
+}
+
+<h1>Chi tiết phòng ban</h1>
+
+<div>
+    <h4>Phòng ban</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartmentCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DepartmentCode)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DepartmentName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.DepartmentId" class="btn btn-primary">
+        Sửa
+    </a>
+    <a asp-action="Index" class="btn btn-secondary">
+        Quay lại
+    </a>
+</div>

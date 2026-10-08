@@ -1,0 +1,53 @@
+@model QLTS.Models.ProcurementDetail
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ProcurementDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="ProcurementId" class="control-label"></label>
+                <select asp-for="ProcurementId" class="form-control" asp-items="ViewBag.ProcurementId">
+                    <option value="">-- Chọn phiếu nhập --</option>
+                </select>
+                <span asp-validation-for="ProcurementId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AssetId" class="control-label"></label>
+                <select asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetId">
+                    <option value="">-- Chọn tài sản --</option>
+                </select>
+                <span asp-validation-for="AssetId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UnitCost" class="control-label"></label>
+                <input asp-for="UnitCost" class="form-control" />
+                <span asp-validation-for="UnitCost" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

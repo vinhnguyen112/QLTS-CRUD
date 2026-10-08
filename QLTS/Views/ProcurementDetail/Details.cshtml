@@ -1,0 +1,39 @@
+@model QLTS.Models.ProcurementDetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ProcurementDetail</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Procurement)
+        </dt>
+        <dd class="col-sm-10">
+            @(Model?.Procurement?.ProcurementCode) - @(Model?.Procurement?.RequesterName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Asset)
+        </dt>
+        <dd class="col-sm-10">
+            @(Model?.Asset?.AssetCode) - @(Model?.Asset?.AssetName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitCost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitCost)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ProcurementDetailId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

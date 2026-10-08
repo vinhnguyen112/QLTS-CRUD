@@ -1,0 +1,85 @@
+@model IEnumerable<QLTS.Models.MaintenanceRequest>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Asset)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Requester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technician)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProblemDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(item.Asset?.AssetCode) - @(item.Asset?.AssetName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Requester!.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Technician!.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProblemDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solution)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompletedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaintenanceRequestId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MaintenanceRequestId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MaintenanceRequestId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

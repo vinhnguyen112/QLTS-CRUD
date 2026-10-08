@@ -1,0 +1,91 @@
+@model IEnumerable<QLTS.Models.AssetAssignment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Asset)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FromDepartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDepartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FromEmployee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToEmployee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignmentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Creator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(item.Asset?.AssetCode) - @(item.Asset?.AssetName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromDepartment!.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToDepartment!.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromEmployee!.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToEmployee!.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignmentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Creator!.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AssignmentId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.AssignmentId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AssignmentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

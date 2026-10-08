@@ -1,0 +1,41 @@
+@model IEnumerable<QLTS.Models.AssetDisposal>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Danh sách Thanh lý Tài sản</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Asset)</th>
+            <th>@Html.DisplayNameFor(model => model.DisposalDate)</th>
+            <th>@Html.DisplayNameFor(model => model.DisposalMethod)</th>
+            <th>@Html.DisplayNameFor(model => model.DisposalValue)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>@Html.DisplayNameFor(model => model.Approver)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Asset.AssetName)</td>
+            <td>@item.DisposalDate.ToShortDateString()</td>
+            <td>@Html.DisplayFor(modelItem => item.DisposalMethod)</td>
+            <td>@Html.DisplayFor(modelItem => item.DisposalValue)</td>
+            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+            <td>@Html.DisplayFor(modelItem => item.Approver.FullName)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AssetDisposalId">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.AssetDisposalId">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.AssetDisposalId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
